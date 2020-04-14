@@ -14,6 +14,7 @@ CREATE TABLE challenges (
   flag varchar(255) DEFAULT NULL,
   is_found tinyint DEFAULT NULL,
   is_club_created tinyint DEFAULT NULL,
+  author varchar(255) DEFAULT NULL,
   PRIMARY KEY (challengeKey)
 ) ;
 
@@ -158,8 +159,8 @@ CREATE TABLE particpants_solve_challenges (
 
 CREATE TABLE teams_work_on_ctfs (
   teamKey int DEFAULT NULL,
-  challengeKey int DEFAULT NULL,
-  PRIMARY KEY (teamKey, challengeKey) /*!80000 INVISIBLE */,
-  CONSTRAINT challengeKey_fk1 FOREIGN KEY (challengeKey) REFERENCES challenges (challengeKey),
+  CTFKey int DEFAULT NULL,
+  PRIMARY KEY (teamKey, CTFKey) /*!80000 INVISIBLE */,
+  CONSTRAINT CTFKey_fk1 FOREIGN KEY (CTFKey) REFERENCES ctfs (CTFKey),
   CONSTRAINT teamKey_fk1 FOREIGN KEY (teamKey) REFERENCES teams (teamKey)
 ) ;

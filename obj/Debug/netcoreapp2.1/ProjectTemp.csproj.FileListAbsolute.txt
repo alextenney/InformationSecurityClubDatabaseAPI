@@ -32,3 +32,21 @@ C:\Users\alexa\OneDrive\Documents\CPSC 471\ProjectTemp\obj\Debug\netcoreapp2.1\P
 C:\Users\alexa\OneDrive\Documents\CPSC 471\ProjectTemp\obj\Debug\netcoreapp2.1\ProjectTemp.AssemblyInfo.cs
 C:\Users\alexa\OneDrive\Documents\CPSC 471\ProjectTemp\obj\Debug\netcoreapp2.1\ProjectTemp.RazorTargetAssemblyInfo.cache
 C:\Users\alexa\OneDrive\Documents\CPSC 471\ProjectTemp\obj\Debug\netcoreapp2.1\ProjectTemp.genruntimeconfig.cache
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.csprojAssemblyReference.cache
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.csproj.CoreCompileInputs.cache
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.RazorAssemblyInfo.cache
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.RazorAssemblyInfo.cs
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.AssemblyInfoInputs.cache
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.AssemblyInfo.cs
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.dll
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.pdb
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\ProjectTemp.deps.json
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\ProjectTemp.runtimeconfig.json
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\ProjectTemp.runtimeconfig.dev.json
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\ProjectTemp.dll
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\bin\Debug\netcoreapp2.1\ProjectTemp.pdb
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.RazorTargetAssemblyInfo.cache
+C:\Users\Jer\Documents\CPSC471\InformationSecurityClubDatabaseAPI\obj\Debug\netcoreapp2.1\ProjectTemp.genruntimeconfig.cache
