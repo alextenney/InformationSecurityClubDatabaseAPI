@@ -11885,11 +11885,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp\\ProjectTemp.csproj",
+      "projectUniqueName": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
       "projectName": "ProjectTemp",
-      "projectPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp\\ProjectTemp.csproj",
+      "projectPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
       "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp\\obj\\",
+      "outputPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",

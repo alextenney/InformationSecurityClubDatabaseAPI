@@ -27,7 +27,7 @@ namespace ProjectTemp.Helpers
         {
             try
             {
-                return "You Database Connection String";
+                return "Server=(localdb)/mssqllocaldb;Database=master;Trusted_Connection=True;";
             }
             catch { return null; }
         }

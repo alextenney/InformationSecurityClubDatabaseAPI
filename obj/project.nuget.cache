@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gm3lUTv5ZFZNBFGYe+31/KH3Pw3Aqp6JC2+u2gZObmws48cA5lxeXsmxJS4L2OR+BV0bqgr+3+GiC/dc4uG2qg==",
+  "dgSpecHash": "3VKoJoGcoFPy/mw9dlZiGzLxLJlZiTy06d1ciPqy1XSnZcWgNCwkRskan9oVpKUkZpsBKTHfwPak3ChtT5bBRA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp\\ProjectTemp.csproj",
+  "projectFilePath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alexa\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
