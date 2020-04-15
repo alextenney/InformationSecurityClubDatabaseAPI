@@ -47,19 +47,27 @@ namespace ProjectTemp.Helpers
 
         public int Execute_Non_Query_Store_Procedure(string procedureName, SqlParameter[] parameters, string returnValue)
         {
+            // if there's no connection, return -2...probably the value of a failed query
             if (GetSQLConnection() == null)
                 return -2;
 
+            // default the query to unseccesful 
             int successfulQuery = -2;
+            // new SQL command, takes procedure name and the connection string
             SqlCommand sqlCommand = new SqlCommand(procedureName, GetSQLConnection());
+            // the command type is the stored procedure
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
+            // try catch
             try
-            {
+            {   // adds "elements" to the end of the "SQL Parameter Collection" (not 100% what is exactly)
                 sqlCommand.Parameters.AddRange(parameters);
+                // open connection with the property settings in the ConnectionString 
                 sqlCommand.Connection.Open();
+                // Returns number of rows affected!
                 successfulQuery = sqlCommand.ExecuteNonQuery();
-                successfulQuery = (int)sqlCommand.Parameters["@" + returnValue].Value;
+                // Immediately sets it to something else?  AMERICAN EXPLAIN!
+                successfulQuery = (int)sqlCommand.Parameters["@" + returnValue].Value;  // WHHHHHHHHHHHHHHHHHHHHYYYYYYYYYYYYYYYYYYYYYYY!?!!?!?
 
             }
             catch (Exception ex)
@@ -70,6 +78,8 @@ namespace ProjectTemp.Helpers
             if (sqlCommand.Connection != null && sqlCommand.Connection.State == ConnectionState.Open)
                 sqlCommand.Connection.Close();
 
+            // This is returning a value from the stored procedure...not sure if it's just that != -2 means it was
+            // successful or if it's returning the number of values queried/affected!
             return successfulQuery;
         }
 
@@ -80,9 +90,11 @@ namespace ProjectTemp.Helpers
         /// <returns></returns>
         public int Execute_Non_Query_Store_Procedure(string procedureName, SqlParameter[] parameters)
         {
+            // Not clear why these return values are different...debugging?
             if (GetSQLConnection() == null)
                 return -1;
 
+            // Why default to 1 now?
             int successfulQuery = 1;
             SqlCommand sqlCommand = new SqlCommand(procedureName, GetSQLConnection());
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -91,8 +103,9 @@ namespace ProjectTemp.Helpers
             {
                 sqlCommand.Parameters.AddRange(parameters);
                 sqlCommand.Connection.Open();
+                // Returns number of rows affected!
                 successfulQuery = sqlCommand.ExecuteNonQuery();
-                // successfulQuery =1
+                // successfulQuery =1 (his comment, not mine...don't know why that's here as it's the default value!)
 
             }
             catch (Exception ex)
@@ -123,6 +136,7 @@ namespace ProjectTemp.Helpers
 
             try
             {
+                // fills the dataTable with the table from the stored procedure
                 sqlAdapter.SelectCommand.Parameters.AddRange(parameters);
                 sqlAdapter.SelectCommand.Connection.Open();
                 sqlAdapter.Fill(dataTable);
@@ -132,10 +146,11 @@ namespace ProjectTemp.Helpers
                 string ee = er.ToString();
                 dataTable = null;
             }
-
+            // close the connection if things worked
             if (sqlAdapter.SelectCommand.Connection != null && sqlAdapter.SelectCommand.Connection.State == ConnectionState.Open)
                 sqlAdapter.SelectCommand.Connection.Close();
 
+            // return the data table
             return dataTable;
         }
 
@@ -197,28 +212,36 @@ namespace ProjectTemp.Helpers
         #endregion
 
         #region Examples
-        public int updateEmployee(int empId,string empName, DateTime embBDate,string empAddress)
+        public int adminAddsTeamMember(string participantName, string teamName)
         {
+            // Specifc number of parametrs for this stored procedure
+            SqlParameter[] Parameters = new SqlParameter[2];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@participantName", participantName);
+            Parameters[1] = new SqlParameter("@teamName", teamName);
 
+            return Execute_Non_Query_Store_Procedure("adminAddsTeamMember", Parameters);
+        }
 
-            SqlParameter[] Parameters = new SqlParameter[4]; // Specifc number of parametrs for this tored procedure. 
-            Parameters[0] = new SqlParameter("@empName", empName);//Make sure parameters name matches thenames given in your stored procedure
-            Parameters[1] = new SqlParameter("@embBDate", embBDate);
-            Parameters[2] = new SqlParameter("@empAddress", empAddress);
-            Parameters[3] = new SqlParameter("@empId", empId);
+        public int adminCreatesTeam(string teamName)
+        {
+            // Specifc number of parametrs for this stored procedure
+            SqlParameter[] Parameters = new SqlParameter[1];
+            // Load the parameters into the list
+            Parameters[1] = new SqlParameter("@teamName", teamName);
 
-            return Execute_Non_Query_Store_Procedure("SP_UpdateEmpInfo", Parameters);//Make sure procedure name matches the name given in your RDBMS
+            return Execute_Non_Query_Store_Procedure("adminCreatesTeam", Parameters);
         }
 
 
-        public int insertPerson( string firstName, string lastName)
+        public int insertPerson(string firstName, string lastName)
         {
             SqlParameter[] Parameters = new SqlParameter[3];
             Parameters[0] = new SqlParameter("@firstName", firstName);
             Parameters[1] = new SqlParameter("@lastName", lastName);
 
-            Parameters[2] = new SqlParameter("@pId", SqlDbType.Int);
-            Parameters[2].Direction = ParameterDirection.Output;
+            Parameters[2] = new SqlParameter("@pId", SqlDbType.Int);  // not sure why it's doing this!  doesn't DB generate the ID?
+            Parameters[2].Direction = ParameterDirection.Output;   //not 100% on this one
 
 
             return Execute_Non_Query_Store_Procedure("AddPerson", Parameters, "pId");
