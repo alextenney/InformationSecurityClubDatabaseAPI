@@ -9,10 +9,10 @@ CREATE TABLE challenges (
   challengeKey int NOT NULL IDENTITY(1, 1),
   cName varchar(255) DEFAULT NULL,
   cPath varchar(255) DEFAULT NULL,
-  difficult int DEFAULT NULL,
+  difficulty varchar(255) DEFAULT NULL,
   flag varchar(255) DEFAULT NULL,
-  is_found tinyint DEFAULT NULL,
-  is_club_created tinyint DEFAULT NULL,
+  is_found bit DEFAULT NULL,
+  is_club_created bit DEFAULT NULL,
   author varchar(255) DEFAULT NULL,
   PRIMARY KEY (challengeKey)
 ) ;
@@ -47,7 +47,7 @@ CREATE TABLE participants (
   email varchar(255) DEFAULT NULL,
   UCID char(8) DEFAULT NULL,
   discordID varchar(255) DEFAULT NULL,
-  percentMeetingsAttended varchar(45) DEFAULT '0',
+  meetingsAttended varchar(255) DEFAULT '0',
   lifetimeScore int DEFAULT '0',
   PRIMARY KEY (participantKey)
 ) ;
@@ -86,7 +86,7 @@ CREATE TABLE participants_goto_meetings (
 CREATE TABLE ctfs (
   CTFKey int NOT NULL IDENTITY(1, 1),
   ctfName varchar(255) DEFAULT NULL,
-  difficulty int DEFAULT NULL,
+  difficulty varchar(255) DEFAULT NULL,
   ctftype varchar(255) DEFAULT NULL,
   host varchar(255) DEFAULT NULL,
   ctfdate date DEFAULT NULL,
@@ -126,11 +126,19 @@ CREATE TABLE team_members (
 ) ;
 
 
-CREATE TABLE specialization (
+CREATE TABLE lookup_specialization (
+  typeKey int NOT NULL IDENTITY(1, 1),
+  specializationType varchar(255) DEFAULT 'none',
+  PRIMARY KEY (typeKey)
+);
+
+CREATE TABLE specialization_type_lookup (
+  typeKey int DEFAULT NULL,
   participantKey int NOT NULL,
-  specialization text,
-  PRIMARY KEY (participantKey)
-) ;
+  PRIMARY KEY (typeKey, participantKey),
+  FOREIGN KEY (participantKey) REFERENCES participants (participantKey),
+  FOREIGN KEY (typeKey) REFERENCES lookup_specialization (typeKey)
+);
 
 CREATE TABLE participants_goto_special_events (
   participantKey int DEFAULT NULL,
@@ -162,3 +170,4 @@ CREATE TABLE teams_work_on_ctfs (
   PRIMARY KEY (teamKey, CTFKey) /*!80000 INVISIBLE */,
   CONSTRAINT CTFKey_fk1 FOREIGN KEY (CTFKey) REFERENCES ctfs (CTFKey),
   CONSTRAINT teamKey_fk1 FOREIGN KEY (teamKey) REFERENCES teams (teamKey)
+);
