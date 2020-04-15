@@ -251,3 +251,19 @@ INSERT INTO teams_work_on_ctfs VALUES (2,1);
 INSERT INTO teams_work_on_ctfs VALUES (2,1);
 INSERT INTO teams_work_on_ctfs VALUES (2,1);
 INSERT INTO teams_work_on_ctfs VALUES (2,1);
+
+INSERT INTO lookup_specialization (specializationType) VALUES ('Web Exploitation');
+INSERT INTO lookup_specialization (specializationType) VALUES ('Binary Exploitation');
+INSERT INTO lookup_specialization (specializationType) VALUES ('Cryptography');
+INSERT INTO lookup_specialization (specializationType) VALUES ('Reverse Engineering');
+INSERT INTO lookup_specialization (specializationType) VALUES ('Forensics');
+
+INSERT INTO specialization_type_lookup VALUES (1,1);
+INSERT INTO specialization_type_lookup VALUES (2,2);
+INSERT INTO specialization_type_lookup VALUES (2,1);
+INSERT INTO specialization_type_lookup VALUES (4,2);
+INSERT INTO specialization_type_lookup VALUES (3,6);
+INSERT INTO specialization_type_lookup VALUES (5,6);
+INSERT INTO specialization_type_lookup VALUES (1,14);
+INSERT INTO specialization_type_lookup VALUES (3,14);
+INSERT INTO specialization_type_lookup VALUES (3,17);
