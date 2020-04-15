@@ -20,14 +20,40 @@ namespace ProjectTemp.Controllers
         public ActionResult<IEnumerable<string>> selectCTF([FromBody] JObject data)
         {
             string pName = (string)data["pName"];
+            List<string> distinctSpecializations = new List<string>();
+            List<string> allTeams = new List<string>();
 
             List<string> myP = new List<string>();
             DatabaseModel dbm = new DatabaseModel();
             DataTable dt = dbm.adminSelectsParticipant(pName);
             foreach (DataRow dr in dt.Rows)
             {
-                //string name = dr[0].ToString();
-                myP.Add(dr[0].ToString());
+                string specialization = dr[0].ToString();
+                if (!(distinctSpecializations.Contains(specialization)))
+                {
+                    distinctSpecializations.Add(specialization);
+                }
+
+                string team = dr[2].ToString();
+                if (!(allTeams.Contains(team)))
+                {
+                    allTeams.Add(team);
+                }
+            }
+            string specializationList = String.Join(", ", distinctSpecializations);
+            string teamsList = String.Join(", ", allTeams);
+
+            foreach (DataRow dr in dt.Rows) 
+            {
+                myP.Add("{");
+                myP.Add("SPECIALIZATION : [" + specializationList + "]");
+                myP.Add("MEMBER SINCE : " + dr[1].ToString());
+                myP.Add("TEAMS : [" + teamsList + "]");
+                myP.Add("MEETINGS ATTENDED : " + dr[3].ToString());
+                myP.Add("SCORE : " + dr[4].ToString());
+                myP.Add("}");
+
+
             }
             return Ok(myP);
         }
@@ -54,7 +80,7 @@ namespace ProjectTemp.Controllers
             foreach (DataRow dr in dt.Rows)
             {
                 myP.Add("{");
-                myP.Add("NAME : "+ dr[0].ToString());
+                myP.Add("NAME : " + dr[0].ToString());
                 myP.Add("KEY : " + dr[1].ToString());
                 myP.Add("PATH : " + dr[2].ToString());
                 myP.Add("DIFFICULTY : " + dr[3].ToString());
