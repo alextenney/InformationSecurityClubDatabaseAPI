@@ -9,48 +9,27 @@ using System.Data;
 
 namespace ProjectTemp.Controllers
 {
-
     [Route("api/InfoSecDB")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
         // is this how we call this endpoint?
         // GET api/InfoSecDB/adminSelectsParticipant
-        [HttpGet] // guessing this means that it's specified as a GET request
-        [Route("GetParticipant")] // not 100%, corresponds to the method name
-        public ActionResult<IEnumerable<string>> GetParticipant([FromBody] JObject data)
+        [HttpGet]
+        [Route("adminSelectsParticipant")]
+        public ActionResult<IEnumerable<string>> selectCTF([FromBody] JObject data)
         {
+            string pName = (string)data["pName"];
+
+            List<string> myP = new List<string>();
+            DatabaseModel dbm = new DatabaseModel();
+            DataTable dt = dbm.adminSelectsParticipant(pName);
+            foreach (DataRow dr in dt.Rows)
             {
-                string participantName = (string)data["participantName"];  //////////THIS IS WHERE I WAS ON THIS ENDPOINT
-                List<string> myP = new List<string>();
-                DatabaseModel dbm = new DatabaseModel(); // creates a database model
-
-
-                DataTable dt = dbm.GetParticipant(participantName); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
-
-                int i = 0;
-                int e = 0;
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    e = 0;
-                    myP.Add(dr[e].ToString());
-                    e = e + 1;
-                    while (i < 8)
-                    {
-                        //string name = dr[0].ToString();
-                        myP.Add(dr[i].ToString()); //converts each row into a string, then puts it in the myEMps list
-
-                        i = i + 1;
-                    }
-
-                    i = 1;
-
-                }
-
-                return Ok(myP); // the OK method returns a 200 status code (indicates request succeeded)
-                                // I'm not sure if MORE is being returned there or not
+                //string name = dr[0].ToString();
+                myP.Add(dr[0].ToString());
             }
+            return Ok(myP);
         }
 
         // THIS IS HARD CODED!!! THAT MONSTER!!!!!
@@ -71,23 +50,18 @@ namespace ProjectTemp.Controllers
             DatabaseModel dbm = new DatabaseModel(); // creates a database model
 
             DataTable dt = dbm.GetChallengeInfo(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
-            int i = 0;
-            int e = 0;
 
             foreach (DataRow dr in dt.Rows)
             {
-                e = 0;
-                myP.Add(dr[e].ToString());
-                e = e + 1;
-                while (i < 8)
-                {
-                    //string name = dr[0].ToString();
-                    myP.Add(dr[i].ToString()); //converts each row into a string, then puts it in the myEMps list
+                myP.Add("{");
+                myP.Add("NAME : "+ dr[0].ToString());
+                myP.Add("KEY : " + dr[1].ToString());
+                myP.Add("PATH : " + dr[2].ToString());
+                myP.Add("DIFFICULTY : " + dr[3].ToString());
+                myP.Add("AUTHOR : " + dr[4].ToString());
+                myP.Add("TYPE : " + dr[5].ToString());
+                myP.Add("}");
 
-                    i = i + 1;
-                }
-
-                i = 1;
 
             }
             return Ok(myP);
