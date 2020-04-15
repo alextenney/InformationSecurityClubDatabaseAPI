@@ -233,3 +233,11 @@ INSERT INTO team_members (teamKey,participantKey) VALUES (2,8);
 INSERT INTO team_members (teamKey,participantKey) VALUES (3,1); 
 INSERT INTO team_members (teamKey,participantKey) VALUES (3,7);
 INSERT INTO team_members (teamKey,participantKey) VALUES (3,11);
+
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (1,1);
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (2,1);
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (3,1);
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (4,1);
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (5,1);
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (6,1);
+INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (7,1);
