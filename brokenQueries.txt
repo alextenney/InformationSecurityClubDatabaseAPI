@@ -8,14 +8,6 @@ INSERT INTO teams_work_on_ctfs VALUES (2,1);
 INSERT INTO teams_work_on_ctfs VALUES (2,1);
 INSERT INTO teams_work_on_ctfs VALUES (2,1);
 
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (1,1);
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (2,1);
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (3,1);
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (4,1);
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (5,1);
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (6,1);
-INSERT INTO ctfs_have_challenges (challengeKey,CTFKey) VALUES (7,1);
-
 INSERT INTO lookup_specialization (specializationType) VALUES ('Web Exploitation');
 INSERT INTO lookup_specialization (specializationType) VALUES ('Binary Exploitation');
 INSERT INTO lookup_specialization (specializationType) VALUES ('Cryptography');
