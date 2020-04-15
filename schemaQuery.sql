@@ -126,11 +126,19 @@ CREATE TABLE team_members (
 ) ;
 
 
-CREATE TABLE specialization (
+CREATE TABLE lookup_specialization (
+  typeKey int NOT NULL IDENTITY(1, 1),
+  specializationType varchar(255) DEFAULT 'none',
+  PRIMARY KEY (typeKey)
+);
+
+CREATE TABLE specialization_type_lookup (
+  typeKey int DEFAULT NULL,
   participantKey int NOT NULL,
-  specialization text,
-  PRIMARY KEY (participantKey)
-) ;
+  PRIMARY KEY (typeKey, participantKey),
+  FOREIGN KEY (participantKey) REFERENCES participants (participantKey),
+  FOREIGN KEY (typeKey) REFERENCES lookup_specialization (typeKey)
+);
 
 CREATE TABLE participants_goto_special_events (
   participantKey int DEFAULT NULL,
