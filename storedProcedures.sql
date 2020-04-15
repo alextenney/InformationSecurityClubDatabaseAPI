@@ -202,7 +202,7 @@ END
 
 
 
-CREATE PROCEDURE [dbo].[Procedure]
+CREATE PROCEDURE [dbo].[selectWhoCapturedFlag]
 	@flag VARCHAR(255)
 AS
 	BEGIN
