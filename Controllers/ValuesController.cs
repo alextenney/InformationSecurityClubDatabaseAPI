@@ -13,11 +13,30 @@ namespace ProjectTemp.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        [HttpGet]
+        [Route("selectWhoFoundFlag")]
+        public ActionResult<IEnumerable<string>> selectWhoFoundFlag([FromBody] JObject data)
+        {
+            string flag = (string)data["flag"];
+
+            List<string> myP = new List<string>();
+            DatabaseModel dbm = new DatabaseModel();
+            DataTable dt = dbm.selectWhoFoundFlag(flag);
+            foreach (DataRow dr in dt.Rows)
+            {
+                myP.Add("{");
+                myP.Add("NAME : " + dr[0].ToString());
+                myP.Add("}");
+
+
+            }
+            return Ok(myP);
+        }
         // is this how we call this endpoint?
         // GET api/InfoSecDB/adminSelectsParticipant
         [HttpGet]
         [Route("adminSelectsParticipant")]
-        public ActionResult<IEnumerable<string>> selectCTF([FromBody] JObject data)
+        public ActionResult<IEnumerable<string>> adminSelectsParticipant([FromBody] JObject data)
         {
             string pName = (string)data["pName"];
             List<string> distinctSpecializations = new List<string>();
@@ -58,6 +77,7 @@ namespace ProjectTemp.Controllers
             return Ok(myP);
         }
 
+
         // THIS IS HARD CODED!!! THAT MONSTER!!!!!
         // GET api/ValuesController/GetValuesById?id=5
         [HttpGet]
@@ -66,6 +86,7 @@ namespace ProjectTemp.Controllers
         {
             return new string[] { "value1" };
         }
+
 
         // GET api/InfoSecDB/GetChallengeInfo
         [HttpGet]

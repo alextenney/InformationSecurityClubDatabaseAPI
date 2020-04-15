@@ -269,6 +269,17 @@ namespace ProjectTemp.Helpers
 
         }
 
+        public DataTable selectWhoFoundFlag(string flag)
+        {
+
+            SqlParameter[] Parameters = new SqlParameter[1];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@flag", flag);
+
+            return Execute_Data_Query_Store_Procedure("selectWhoFoundFlag", Parameters);
+
+        }
+
         public int participantAddsAttendance(string participantName, string meeetingDate)
         {
             // Specifc number of parametrs for this stored procedure
