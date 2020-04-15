@@ -66,6 +66,30 @@ namespace ProjectTemp.Controllers
             }
             return Ok(myP);
         }
+
+        // GET api/InfoSecDB/GetTeam
+        [HttpGet]
+        [Route("GetTeam")]
+        public ActionResult<IEnumerable<string>> GetTeam([FromBody] JObject data)
+        {
+            string teamName = (string)data["teamName"];
+            List<string> myP = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
+            DatabaseModel dbm = new DatabaseModel(); // creates a database model
+
+            DataTable dt = dbm.GetTeam(teamName); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                myP.Add("{");
+                myP.Add("TEAM NAME : " + dr[0].ToString());
+                myP.Add("PARTICIPANT NAME : " + dr[1].ToString());
+                myP.Add("PARTICIPANT SPECIALIZATION: : " + dr[2].ToString());
+                myP.Add("}");
+
+
+            }
+            return Ok(myP);
+        }
         // POST api/InfoSecDB/InsertEmployee
         [HttpPost]
         [Route("InsertEmployee")]
