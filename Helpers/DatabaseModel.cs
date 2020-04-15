@@ -226,7 +226,7 @@ namespace ProjectTemp.Helpers
         public int adminCreatesTeam(string teamName)
         {
             // Specifc number of parametrs for this stored procedure
-            SqlParameter[] Parameters = new SqlParameter[1];
+            SqlParameter[] Parameters = new SqlParameter[2]; //this was originally a 1, but hit a system out of bounds error
             // Load the parameters into the list
             Parameters[1] = new SqlParameter("@teamName", teamName);
 
