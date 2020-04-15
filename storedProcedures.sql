@@ -142,6 +142,7 @@ AS
 		INNER JOIN
 		participants AS D
 		ON C.participantKey = D.participantKey
+		WHERE ctfName = @CTFname
 END
 
 
