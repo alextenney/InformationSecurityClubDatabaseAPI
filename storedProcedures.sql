@@ -114,7 +114,7 @@ END
 CREATE PROCEDURE [dbo].[adminSelectsChallenges]
 AS
 	BEGIN
-		SELECT cName, A.challengeKey, cPath, difficult, author, challengeType
+		SELECT cName, A.challengeKey, cPath, difficulty, author, challengeType
 		FROM challenges AS A
 		INNER JOIN
 		challenge_type_lookup AS B
