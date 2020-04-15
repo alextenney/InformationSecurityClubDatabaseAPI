@@ -27,7 +27,7 @@ namespace ProjectTemp.Helpers
         {
             try
             {
-                return "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                return "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
             }
             catch { return null; }
         }
@@ -258,14 +258,24 @@ namespace ProjectTemp.Helpers
 
         }
 
-        public DataTable GetParticipant()
+        public DataTable GetParticipant(string name)
         {
-            SqlParameter[] Parameters = new SqlParameter[0];
 
+            SqlParameter[] Parameters = new SqlParameter[1];
+            Parameters[0] = new SqlParameter("@name", name);
 
-            return Execute_Data_Query_Store_Procedure("GetPeople", Parameters);
+            return Execute_Data_Query_Store_Procedure("adminSelectParticipant", Parameters);
+        }
 
+        public int participantAddsAttendance(string participantName, string meeetingDate)
+        {
+            // Specifc number of parametrs for this stored procedure
+            SqlParameter[] Parameters = new SqlParameter[2];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@participantName", participantName);
+            Parameters[1] = new SqlParameter("@meetingDate", meeetingDate);
 
+            return Execute_Non_Query_Store_Procedure("participantAddsAttendance", Parameters);
         }
 
         public int updateSalaries()

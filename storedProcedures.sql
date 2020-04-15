@@ -37,7 +37,7 @@ AS
 			ON B.typeKey = C.typeKey
 			WHERE pName = @participantName)
         
-		SELECT specializationType, memberSince, teamName, meetingsAttended, lifetimeScore
+		SELECT specializationType, memberSince, teamName, E.meetingsAttended, lifetimeScore
 		FROM MEETINGCOUNT AS A
 		INNER JOIN
 		ONTEAM AS B
@@ -72,7 +72,7 @@ END
 
 
 
-CCREATE PROCEDURE [dbo].[selectTeam]
+CREATE PROCEDURE [dbo].[selectTeam]
     @teamName VARCHAR(255)
 AS
     BEGIN
@@ -85,10 +85,10 @@ AS
             FROM team_members, TEAMNAMES
             WHERE team_members.teamKey = TEAMNAMES.teamKey),
         TEAMSPECIALIZATIONS(participantKey, specializationType) AS (
-            SELECT participantKey, specializationType
+            SELECT A.participantKey, specializationType
             FROM specialization_type_lookup AS A
             INNER JOIN lookup_specialization AS B ON A.typeKey = B.typeKey, PARTSONTEAMS
-            WHERE PARTSONTEAMS.participantKey = participantKey),
+            WHERE PARTSONTEAMS.participantKey = A.participantKey),
         MEMBERNAMES(pName, participantKey) AS (
             SELECT participants.pName, participants.participantKey
             FROM participants, PARTSONTEAMS

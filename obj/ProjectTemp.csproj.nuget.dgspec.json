@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maars\\Downloads\\InformationSecurityClubDatabaseAPI-master (2)\\InformationSecurityClubDatabaseAPI-master\\ProjectTemp.csproj": {}
+    "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maars\\Downloads\\InformationSecurityClubDatabaseAPI-master (2)\\InformationSecurityClubDatabaseAPI-master\\ProjectTemp.csproj": {
+    "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maars\\Downloads\\InformationSecurityClubDatabaseAPI-master (2)\\InformationSecurityClubDatabaseAPI-master\\ProjectTemp.csproj",
+        "projectUniqueName": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
         "projectName": "ProjectTemp",
-        "projectPath": "C:\\Users\\maars\\Downloads\\InformationSecurityClubDatabaseAPI-master (2)\\InformationSecurityClubDatabaseAPI-master\\ProjectTemp.csproj",
-        "packagesPath": "C:\\Users\\maars\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maars\\Downloads\\InformationSecurityClubDatabaseAPI-master (2)\\InformationSecurityClubDatabaseAPI-master\\obj\\",
+        "projectPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
+        "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maars\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

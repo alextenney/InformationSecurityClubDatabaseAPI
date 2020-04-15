@@ -9,6 +9,7 @@ using System.Data;
 
 namespace ProjectTemp.Controllers
 {
+
     [Route("api/InfoSecDB")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -17,20 +18,39 @@ namespace ProjectTemp.Controllers
         // GET api/InfoSecDB/adminSelectsParticipant
         [HttpGet] // guessing this means that it's specified as a GET request
         [Route("GetParticipant")] // not 100%, corresponds to the method name
-        public ActionResult<IEnumerable<string>> GetParticipant()
+        public ActionResult<IEnumerable<string>> GetParticipant([FromBody] JObject data)
         {
-            List<string> myP = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
-            DatabaseModel dbm = new DatabaseModel(); // creates a database model
-            
-            DataTable dt = dbm.GetParticipant(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
-            foreach (DataRow dr in dt.Rows)
             {
-                //string name = dr[0].ToString();
-                myP.Add(dr[0].ToString()); //converts each row into a string, then puts it in the myEMps list
+                string participantName = (string)data["participantName"];  //////////THIS IS WHERE I WAS ON THIS ENDPOINT
+                List<string> myP = new List<string>();
+                DatabaseModel dbm = new DatabaseModel(); // creates a database model
 
+
+                DataTable dt = dbm.GetParticipant(participantName); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
+
+                int i = 0;
+                int e = 0;
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    e = 0;
+                    myP.Add(dr[e].ToString());
+                    e = e + 1;
+                    while (i < 8)
+                    {
+                        //string name = dr[0].ToString();
+                        myP.Add(dr[i].ToString()); //converts each row into a string, then puts it in the myEMps list
+
+                        i = i + 1;
+                    }
+
+                    i = 1;
+
+                }
+
+                return Ok(myP); // the OK method returns a 200 status code (indicates request succeeded)
+                                // I'm not sure if MORE is being returned there or not
             }
-            return Ok(myP); // the OK method returns a 200 status code (indicates request succeeded)
-            // I'm not sure if MORE is being returned there or not
         }
 
         // THIS IS HARD CODED!!! THAT MONSTER!!!!!
@@ -97,6 +117,20 @@ namespace ProjectTemp.Controllers
 
             DatabaseModel dbm = new DatabaseModel();
             int value = dbm.adminAddsTeamMember(participantName, teamName);
+
+            return Ok(value);
+        }
+
+        // PUT api/InfoSecDB/participantAddsAttendance
+        [HttpPut]
+        [Route("participantAddsAttendance")]
+        public ActionResult<IEnumerable<string>> participantAddsAttendance([FromBody] JObject data)
+        {
+            string participantName = (string)data["participantName"];
+            string meetingDate = (string)data["meetingDate"];
+
+            DatabaseModel dbm = new DatabaseModel();
+            int value = dbm.participantAddsAttendance(participantName, meetingDate);
 
             return Ok(value);
         }
