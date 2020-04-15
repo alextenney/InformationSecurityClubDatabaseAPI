@@ -27,7 +27,7 @@ namespace ProjectTemp.Helpers
         {
             try
             {
-                return "Server=(localdb)/mssqllocaldb;Database=master;Trusted_Connection=True;";
+                return "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             }
             catch { return null; }
         }
@@ -226,9 +226,9 @@ namespace ProjectTemp.Helpers
         public int adminCreatesTeam(string teamName)
         {
             // Specifc number of parametrs for this stored procedure
-            SqlParameter[] Parameters = new SqlParameter[2]; //this was originally a 1, but hit a system out of bounds error
+            SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
-            Parameters[1] = new SqlParameter("@teamName", teamName);
+            Parameters[0] = new SqlParameter("@teamName", teamName);
 
             return Execute_Non_Query_Store_Procedure("adminCreatesTeam", Parameters);
         }
@@ -248,7 +248,17 @@ namespace ProjectTemp.Helpers
         }
 
 
-        public DataTable GetEmpsInfo()
+        public DataTable GetChallengeInfo()
+        {
+  
+            SqlParameter[] Parameters = new SqlParameter[0];
+
+
+            return Execute_Data_Query_Store_Procedure("GetChallenge", Parameters);
+
+        }
+
+        public DataTable GetParticipant()
         {
             SqlParameter[] Parameters = new SqlParameter[0];
 

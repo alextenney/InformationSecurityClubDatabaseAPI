@@ -16,18 +16,20 @@ namespace ProjectTemp.Controllers
         // is this how we call this endpoint?
         // GET api/InfoSecDB/adminSelectsParticipant
         [HttpGet] // guessing this means that it's specified as a GET request
-        [Route("adminSelectsParticipant")] // not 100%, corresponds to the method name
-        public ActionResult<IEnumerable<string>> adminSelectsParticipant()
+        [Route("GetParticipant")] // not 100%, corresponds to the method name
+        public ActionResult<IEnumerable<string>> GetParticipant()
         {
-            List<string> myEMps = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
+            List<string> myP = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
             DatabaseModel dbm = new DatabaseModel(); // creates a database model
-            DataTable dt = dbm.GetEmpsInfo(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
+            
+            DataTable dt = dbm.GetParticipant(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
             foreach (DataRow dr in dt.Rows)
             {
                 //string name = dr[0].ToString();
-                myEMps.Add(dr[0].ToString()); //converts each row into a string, then puts it in the myEMps list
+                myP.Add(dr[0].ToString()); //converts each row into a string, then puts it in the myEMps list
+
             }
-            return Ok(myEMps); // the OK method returns a 200 status code (indicates request succeeded)
+            return Ok(myP); // the OK method returns a 200 status code (indicates request succeeded)
             // I'm not sure if MORE is being returned there or not
         }
 
@@ -40,7 +42,37 @@ namespace ProjectTemp.Controllers
             return new string[] { "value1" };
         }
 
-        // POST api/ValuesController/InsertEmployee
+        // GET api/InfoSecDB/GetChallengeInfo
+        [HttpGet]
+        [Route("GetChallengeInfo")]
+        public ActionResult<IEnumerable<string>> GetChallengeInfo()
+        {
+            List<string> myP = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
+            DatabaseModel dbm = new DatabaseModel(); // creates a database model
+
+            DataTable dt = dbm.GetChallengeInfo(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
+            int i = 0;
+            int e = 0;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                e = 0;
+                myP.Add(dr[e].ToString());
+                e = e + 1;
+                while (i < 8)
+                {
+                    //string name = dr[0].ToString();
+                    myP.Add(dr[i].ToString()); //converts each row into a string, then puts it in the myEMps list
+
+                    i = i + 1;
+                }
+
+                i = 1;
+
+            }
+            return Ok(myP);
+        }
+        // POST api/InfoSecDB/InsertEmployee
         [HttpPost]
         [Route("InsertEmployee")]
         public ActionResult<IEnumerable<string>> InsertEmployee([FromBody] JObject emp)
