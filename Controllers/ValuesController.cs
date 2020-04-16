@@ -13,7 +13,7 @@ namespace ProjectTemp.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // is this how we call this endpoint?
+
         // GET api/InfoSecDB/adminSelectsParticipant
         [HttpGet]
         [Route("adminSelectsParticipant")]
@@ -26,36 +26,8 @@ namespace ProjectTemp.Controllers
             List<string> myP = new List<string>();
             DatabaseModel dbm = new DatabaseModel();
             DataTable dt = dbm.adminSelectsParticipant(pName);
-            foreach (DataRow dr in dt.Rows)
-            {
-                string specialization = dr[0].ToString();
-                if (!(distinctSpecializations.Contains(specialization)))
-                {
-                    distinctSpecializations.Add(specialization);
-                }
 
-                string team = dr[2].ToString();
-                if (!(allTeams.Contains(team)))
-                {
-                    allTeams.Add(team);
-                }
-            }
-            string specializationList = String.Join(", ", distinctSpecializations);
-            string teamsList = String.Join(", ", allTeams);
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                myP.Add("{");
-                myP.Add("SPECIALIZATION : [" + specializationList + "]");
-                myP.Add("MEMBER SINCE : " + dr[1].ToString());
-                myP.Add("TEAMS : [" + teamsList + "]");
-                myP.Add("MEETINGS ATTENDED : " + dr[3].ToString());
-                myP.Add("SCORE : " + dr[4].ToString());
-                myP.Add("}");
-
-
-            }
-            return Ok(myP);
+            return Ok(dt);
         }
 
 
@@ -69,20 +41,7 @@ namespace ProjectTemp.Controllers
 
             DataTable dt = dbm.GetChallengeInfo(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                myP.Add("{");
-                myP.Add("NAME : "+ dr[0].ToString());
-                myP.Add("KEY : " + dr[1].ToString());
-                myP.Add("PATH : " + dr[2].ToString());
-                myP.Add("DIFFICULTY : " + dr[3].ToString());
-                myP.Add("AUTHOR : " + dr[4].ToString());
-                myP.Add("TYPE : " + dr[5].ToString());
-                myP.Add("}");
-
-
-            }
-            return Ok(myP);
+            return Ok(dt);
         }
 
         // GET api/InfoSecDB/GetTeam
@@ -96,17 +55,8 @@ namespace ProjectTemp.Controllers
 
             DataTable dt = dbm.GetTeam(teamName); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                myP.Add("{");
-                myP.Add("TEAM NAME : " + dr[0].ToString());
-                myP.Add("PARTICIPANT NAME : " + dr[1].ToString());
-                myP.Add("PARTICIPANT SPECIALIZATION: : " + dr[2].ToString());
-                myP.Add("}");
 
-
-            }
-            return Ok(myP);
+            return Ok(dt);
         }
 
         // PUT api/InfoSecDB/adminAddsTeamMember
@@ -163,7 +113,21 @@ namespace ProjectTemp.Controllers
 
             return Ok(value);
         }
-        
 
+
+        // GET api/ValuesController/SelectCTF
+        [HttpGet]
+        [Route("SelectCTF")]
+        public ActionResult<IEnumerable<string>> SelectCTF([FromBody] JObject data)
+        {
+            string ctfName = (string)data["ctfName"];
+
+            List<string> selectCTF = new List<string>();
+            DatabaseModel dbm = new DatabaseModel();
+            DataTable dt = dbm.SelectCTF(ctfName);
+
+            return Ok(dt);
+        }
     }
+
 }

@@ -286,6 +286,15 @@ namespace ProjectTemp.Helpers
             return Execute_Non_Query_Store_Procedure("participantAddsThemselvesToTeam", Parameters);
         }
 
+
+        public DataTable SelectCTF(string ctfName)
+        {
+            SqlParameter[] Parameters = new SqlParameter[1];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@ctfName", ctfName);
+
+            return Execute_Data_Query_Store_Procedure("selectCTF", Parameters);
+        }
         #endregion
     }
 }
