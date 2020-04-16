@@ -22,7 +22,6 @@ namespace ProjectTemp.Helpers
                 return null;
             return new SqlConnection(connectionstring);
         }
-        }
 
         public string Get_PuBConnectionString()
         {
@@ -237,7 +236,7 @@ namespace ProjectTemp.Helpers
 
         public DataTable GetChallengeInfo()
         {
-  
+
             SqlParameter[] Parameters = new SqlParameter[0];
 
 
@@ -275,7 +274,7 @@ namespace ProjectTemp.Helpers
 
             return Execute_Non_Query_Store_Procedure("participantAddsAttendance", Parameters);
         }
-        
+
         public int participantAddsThemselvesToTeam(string participantName, string teamName)
         {
             // Specifc number of parametrs for this stored procedure
@@ -296,6 +295,30 @@ namespace ProjectTemp.Helpers
 
             return Execute_Data_Query_Store_Procedure("selectCTF", Parameters);
         }
+
+        public DataTable selectNotInTeam(string teamName)
+        {
+
+            SqlParameter[] Parameters = new SqlParameter[1];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@teamName", teamName);
+
+            return Execute_Data_Query_Store_Procedure("selectNotInTeam", Parameters);
+
+            
+        }
+
+        public DataTable electWhoFoundFlag(string flag)
+        {
+
+            SqlParameter[] Parameters = new SqlParameter[1];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@flag", flag);
+
+            return Execute_Data_Query_Store_Procedure("selectWhoFoundFlag", Parameters);
+
+        }
         #endregion
     }
+
 }
