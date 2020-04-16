@@ -137,6 +137,19 @@ namespace ProjectTemp.Controllers
             return Ok(dt);
         }
 
+        // GET api/InfoSecDB/SelectNotInTeam
+        [HttpGet]
+        [Route("SelectNotInTeam")]
+        public ActionResult<IEnumerable<string>> selectNotInTeam([FromBody] JObject data)
+        {
+            string teamName = (string)data["teamName"];
+
+            DatabaseModel dbm = new DatabaseModel();
+            DataTable dt = dbm.selectNotInTeam(teamName);
+
+            return Ok(dt);
+        }
+
     }
 
 }
