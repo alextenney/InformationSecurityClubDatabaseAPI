@@ -14,7 +14,7 @@ namespace ProjectTemp.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet]
-        [Route("selectWhoFoundFlag")]
+        [Route("SelectWhoFoundFlag")]
         public ActionResult<IEnumerable<string>> selectWhoFoundFlag([FromBody] JObject data)
         {
             string flag = (string)data["flag"];
@@ -32,10 +32,31 @@ namespace ProjectTemp.Controllers
             }
             return Ok(myP);
         }
+
+        [HttpGet]
+        [Route("SelectNotInTeam")]
+        public ActionResult<IEnumerable<string>> selectNotInTeam([FromBody] JObject data)
+        {
+            string teamName = (string)data["teamName"];
+
+            List<string> myP = new List<string>();
+            DatabaseModel dbm = new DatabaseModel();
+            DataTable dt = dbm.selectWhoFoundFlag(teamName);
+            foreach (DataRow dr in dt.Rows)
+            {
+                myP.Add("{");
+                myP.Add("NAME : " + dr[0].ToString());
+                myP.Add("}");
+
+
+            }
+            return Ok(myP);
+        }
+
         // is this how we call this endpoint?
         // GET api/InfoSecDB/adminSelectsParticipant
         [HttpGet]
-        [Route("adminSelectsParticipant")]
+        [Route("AdminSelectsParticipant")]
         public ActionResult<IEnumerable<string>> adminSelectsParticipant([FromBody] JObject data)
         {
             string pName = (string)data["pName"];
@@ -62,7 +83,7 @@ namespace ProjectTemp.Controllers
             string specializationList = String.Join(", ", distinctSpecializations);
             string teamsList = String.Join(", ", allTeams);
 
-            foreach (DataRow dr in dt.Rows) 
+            foreach (DataRow dr in dt.Rows)
             {
                 myP.Add("{");
                 myP.Add("SPECIALIZATION : [" + specializationList + "]");
@@ -76,6 +97,7 @@ namespace ProjectTemp.Controllers
             }
             return Ok(myP);
         }
+
 
 
         // THIS IS HARD CODED!!! THAT MONSTER!!!!!
@@ -154,7 +176,7 @@ namespace ProjectTemp.Controllers
 
         // PUT api/InfoSecDB/adminAddsTeamMember
         [HttpPut]
-        [Route("adminAddsTeamMember")]
+        [Route("AdminAddsTeamMember")]
         public ActionResult<IEnumerable<string>> adminAddsTeamMember([FromBody] JObject data)
         {
             string participantName = (string)data["participantName"];
@@ -168,7 +190,7 @@ namespace ProjectTemp.Controllers
 
         // PUT api/InfoSecDB/participantAddsAttendance
         [HttpPut]
-        [Route("participantAddsAttendance")]
+        [Route("ParticipantAddsAttendance")]
         public ActionResult<IEnumerable<string>> participantAddsAttendance([FromBody] JObject data)
         {
             string participantName = (string)data["participantName"];
@@ -182,7 +204,7 @@ namespace ProjectTemp.Controllers
 
         // PUT api/InfoSecDB/adminCreatesTeam
         [HttpPut]
-        [Route("adminCreatesTeam")]
+        [Route("AdminCreatesTeam")]
         public ActionResult<IEnumerable<string>> adminCreatesTeam([FromBody] JObject data)
         {
             string teamName = (string)data["teamName"];

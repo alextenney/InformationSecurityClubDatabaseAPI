@@ -279,6 +279,16 @@ namespace ProjectTemp.Helpers
             return Execute_Data_Query_Store_Procedure("selectWhoFoundFlag", Parameters);
         }
 
+        public DataTable selectNotInTeam(string teamName)
+        {
+
+            SqlParameter[] Parameters = new SqlParameter[1];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@teamName", teamName);
+
+            return Execute_Data_Query_Store_Procedure("selectNotInTeam", Parameters);
+        }
+
         public DataTable GetTeam(string teamName)
         {
             SqlParameter[] Parameters = new SqlParameter[1];
