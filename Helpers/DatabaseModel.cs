@@ -22,6 +22,7 @@ namespace ProjectTemp.Helpers
                 return null;
             return new SqlConnection(connectionstring);
         }
+        }
 
         public string Get_PuBConnectionString()
         {
