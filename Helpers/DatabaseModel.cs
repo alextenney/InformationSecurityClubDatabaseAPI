@@ -308,7 +308,7 @@ namespace ProjectTemp.Helpers
             
         }
 
-        public DataTable electWhoFoundFlag(string flag)
+        public DataTable selectWhoFoundFlag(string flag)
         {
 
             SqlParameter[] Parameters = new SqlParameter[1];
