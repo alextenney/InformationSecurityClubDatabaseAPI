@@ -13,50 +13,10 @@ namespace ProjectTemp.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        [HttpGet]
-        [Route("SelectWhoFoundFlag")]
-        public ActionResult<IEnumerable<string>> selectWhoFoundFlag([FromBody] JObject data)
-        {
-            string flag = (string)data["flag"];
-
-            List<string> myP = new List<string>();
-            DatabaseModel dbm = new DatabaseModel();
-            DataTable dt = dbm.selectWhoFoundFlag(flag);
-            foreach (DataRow dr in dt.Rows)
-            {
-                myP.Add("{");
-                myP.Add("NAME : " + dr[0].ToString());
-                myP.Add("}");
-
-
-            }
-            return Ok(myP);
-        }
-
-        [HttpGet]
-        [Route("SelectNotInTeam")]
-        public ActionResult<IEnumerable<string>> selectNotInTeam([FromBody] JObject data)
-        {
-            string teamName = (string)data["teamName"];
-
-            List<string> myP = new List<string>();
-            DatabaseModel dbm = new DatabaseModel();
-            DataTable dt = dbm.selectWhoFoundFlag(teamName);
-            foreach (DataRow dr in dt.Rows)
-            {
-                myP.Add("{");
-                myP.Add("NAME : " + dr[0].ToString());
-                myP.Add("}");
-
-
-            }
-            return Ok(myP);
-        }
-
         // is this how we call this endpoint?
         // GET api/InfoSecDB/adminSelectsParticipant
         [HttpGet]
-        [Route("AdminSelectsParticipant")]
+        [Route("adminSelectsParticipant")]
         public ActionResult<IEnumerable<string>> adminSelectsParticipant([FromBody] JObject data)
         {
             string pName = (string)data["pName"];
@@ -97,9 +57,6 @@ namespace ProjectTemp.Controllers
             }
             return Ok(myP);
         }
-
-
-
         // THIS IS HARD CODED!!! THAT MONSTER!!!!!
         // GET api/ValuesController/GetValuesById?id=5
         [HttpGet]
@@ -108,7 +65,6 @@ namespace ProjectTemp.Controllers
         {
             return new string[] { "value1" };
         }
-
 
         // GET api/InfoSecDB/GetChallengeInfo
         [HttpGet]
@@ -123,7 +79,7 @@ namespace ProjectTemp.Controllers
             foreach (DataRow dr in dt.Rows)
             {
                 myP.Add("{");
-                myP.Add("NAME : " + dr[0].ToString());
+                myP.Add("NAME : "+ dr[0].ToString());
                 myP.Add("KEY : " + dr[1].ToString());
                 myP.Add("PATH : " + dr[2].ToString());
                 myP.Add("DIFFICULTY : " + dr[3].ToString());
@@ -176,7 +132,7 @@ namespace ProjectTemp.Controllers
 
         // PUT api/InfoSecDB/adminAddsTeamMember
         [HttpPut]
-        [Route("AdminAddsTeamMember")]
+        [Route("adminAddsTeamMember")]
         public ActionResult<IEnumerable<string>> adminAddsTeamMember([FromBody] JObject data)
         {
             string participantName = (string)data["participantName"];
@@ -190,7 +146,7 @@ namespace ProjectTemp.Controllers
 
         // PUT api/InfoSecDB/participantAddsAttendance
         [HttpPut]
-        [Route("ParticipantAddsAttendance")]
+        [Route("participantAddsAttendance")]
         public ActionResult<IEnumerable<string>> participantAddsAttendance([FromBody] JObject data)
         {
             string participantName = (string)data["participantName"];
@@ -204,7 +160,7 @@ namespace ProjectTemp.Controllers
 
         // PUT api/InfoSecDB/adminCreatesTeam
         [HttpPut]
-        [Route("AdminCreatesTeam")]
+        [Route("adminCreatesTeam")]
         public ActionResult<IEnumerable<string>> adminCreatesTeam([FromBody] JObject data)
         {
             string teamName = (string)data["teamName"];
