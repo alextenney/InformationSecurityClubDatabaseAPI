@@ -234,20 +234,6 @@ namespace ProjectTemp.Helpers
         }
 
 
-        public int insertPerson(string firstName, string lastName)
-        {
-            SqlParameter[] Parameters = new SqlParameter[3];
-            Parameters[0] = new SqlParameter("@firstName", firstName);
-            Parameters[1] = new SqlParameter("@lastName", lastName);
-
-            Parameters[2] = new SqlParameter("@pId", SqlDbType.Int);  // not sure why it's doing this!  doesn't DB generate the ID?
-            Parameters[2].Direction = ParameterDirection.Output;   //not 100% on this one
-
-
-            return Execute_Non_Query_Store_Procedure("AddPerson", Parameters, "pId");
-        }
-
-
         public DataTable GetChallengeInfo()
         {
   
@@ -288,13 +274,16 @@ namespace ProjectTemp.Helpers
 
             return Execute_Non_Query_Store_Procedure("participantAddsAttendance", Parameters);
         }
-
-        public int updateSalaries()
+        
+        public int participantAddsThemselvesToTeam(string participantName, string teamName)
         {
-            SqlParameter[] Parameters = new SqlParameter[0];
-                
+            // Specifc number of parametrs for this stored procedure
+            SqlParameter[] Parameters = new SqlParameter[2];
+            // Load the parameters into the list
+            Parameters[0] = new SqlParameter("@participantName", participantName);
+            Parameters[1] = new SqlParameter("@teamName", teamName);
 
-            return Execute_Non_Query_Store_Procedure("UpdateSalary", Parameters);
+            return Execute_Non_Query_Store_Procedure("participantAddsThemselvesToTeam", Parameters);
         }
 
         #endregion
