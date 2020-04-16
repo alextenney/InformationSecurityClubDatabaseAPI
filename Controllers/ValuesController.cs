@@ -57,14 +57,7 @@ namespace ProjectTemp.Controllers
             }
             return Ok(myP);
         }
-        // THIS IS HARD CODED!!! THAT MONSTER!!!!!
-        // GET api/ValuesController/GetValuesById?id=5
-        [HttpGet]
-        [Route("GetValuesById")]
-        public ActionResult<IEnumerable<string>> GetValuesById(int id)
-        {
-            return new string[] { "value1" };
-        }
+
 
         // GET api/InfoSecDB/GetChallengeInfo
         [HttpGet]
@@ -115,20 +108,6 @@ namespace ProjectTemp.Controllers
             }
             return Ok(myP);
         }
-        // POST api/InfoSecDB/InsertEmployee
-        [HttpPost]
-        [Route("InsertEmployee")]
-        public ActionResult<IEnumerable<string>> InsertEmployee([FromBody] JObject emp)
-            // passes in a JSON object...I assume that's all the data to add to the table
-        {
-            string empName = (string)emp["empName"]; //objects in the JSON must be tuples?  dictionary-like?
-            string empLastName = (string)emp["empLastName"];
-
-            DatabaseModel dbm = new DatabaseModel();
-            int res = dbm.insertPerson(empName, empLastName);
-
-            return Ok(res);
-        }
 
         // PUT api/InfoSecDB/adminAddsTeamMember
         [HttpPut]
@@ -171,19 +150,20 @@ namespace ProjectTemp.Controllers
             return Ok(value);
         }
 
-
-
+        // PUT api/InfoSecDB/participantAddsThemselvesToTeam
         [HttpPut]
-        [Route("UpdateSalary")]
-        public ActionResult<IEnumerable<string>> UpdateSalary()
+        [Route("participantAddsThemselvesToTeam")]
+        public ActionResult<IEnumerable<string>> participantAddsThemselvesToTeam([FromBody] JObject data)
         {
-           
+            string participantName = (string)data["participantName"];
+            string teamName = (string)data["teamName"];
+
             DatabaseModel dbm = new DatabaseModel();
-            int res=dbm.updateSalaries();
-            return Ok(res);
+            int value = dbm.participantAddsThemselvesToTeam(participantName, teamName);
+
+            return Ok(value);
         }
         
-
 
     }
 }
