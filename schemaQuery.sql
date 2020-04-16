@@ -148,14 +148,6 @@ CREATE TABLE participants_goto_special_events (
   CONSTRAINT specialEventKey_fk FOREIGN KEY (specialEventKey) REFERENCES special_events (specialEventKey) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
 
-CREATE TABLE participants_in_teams (
-  participantKey int DEFAULT NULL,
-  teamKey int DEFAULT NULL,
-  PRIMARY KEY (participantKey, teamKey),
-  CONSTRAINT participantKey_fk3 FOREIGN KEY (participantKey) REFERENCES participants (participantKey),
-  CONSTRAINT teamKey_fk FOREIGN KEY (teamKey) REFERENCES teams (teamKey)
-);
-
 CREATE TABLE particpants_solve_challenges (
   participantKey int DEFAULT NULL,
   challengeKey int DEFAULT NULL,
