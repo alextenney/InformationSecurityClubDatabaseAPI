@@ -20,10 +20,8 @@ namespace ProjectTemp.Controllers
         public ActionResult<IEnumerable<string>> adminSelectsParticipant([FromBody] JObject data)
         {
             string pName = (string)data["pName"];
-            List<string> distinctSpecializations = new List<string>();
-            List<string> allTeams = new List<string>();
 
-            List<string> myP = new List<string>();
+
             DatabaseModel dbm = new DatabaseModel();
             DataTable dt = dbm.adminSelectsParticipant(pName);
 
@@ -36,10 +34,9 @@ namespace ProjectTemp.Controllers
         [Route("GetChallengeInfo")]
         public ActionResult<IEnumerable<string>> GetChallengeInfo()
         {
-            List<string> myP = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
             DatabaseModel dbm = new DatabaseModel(); // creates a database model
 
-            DataTable dt = dbm.GetChallengeInfo(); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
+            DataTable dt = dbm.GetChallengeInfo(); 
 
             return Ok(dt);
         }
@@ -50,10 +47,9 @@ namespace ProjectTemp.Controllers
         public ActionResult<IEnumerable<string>> GetTeam([FromBody] JObject data)
         {
             string teamName = (string)data["teamName"];
-            List<string> myP = new List<string>(); // myEMps is a list    //////////THIS IS WHERE I WAS ON THIS ENDPOINT
             DatabaseModel dbm = new DatabaseModel(); // creates a database model
 
-            DataTable dt = dbm.GetTeam(teamName); // calls the GetEMPsInfo from the Helper (DatabaseModel.cs), a datatable is returned by this
+            DataTable dt = dbm.GetTeam(teamName); 
 
 
             return Ok(dt);
@@ -115,19 +111,32 @@ namespace ProjectTemp.Controllers
         }
 
 
-        // GET api/ValuesController/SelectCTF
+        // GET api/InfoSecDB/SelectCTF
         [HttpGet]
         [Route("SelectCTF")]
         public ActionResult<IEnumerable<string>> SelectCTF([FromBody] JObject data)
         {
             string ctfName = (string)data["ctfName"];
 
-            List<string> selectCTF = new List<string>();
             DatabaseModel dbm = new DatabaseModel();
             DataTable dt = dbm.SelectCTF(ctfName);
 
             return Ok(dt);
         }
+
+        // GET api/InfoSecDB/SelectWhoFoundFlag
+        [HttpGet]
+        [Route("SelectWhoFoundFlag")]
+        public ActionResult<IEnumerable<string>> selectWhoFoundFlag([FromBody] JObject data)
+        {
+            string flag = (string)data["flag"];
+
+            DatabaseModel dbm = new DatabaseModel();
+            DataTable dt = dbm.selectWhoFoundFlag(flag);
+
+            return Ok(dt);
+        }
+
     }
 
 }

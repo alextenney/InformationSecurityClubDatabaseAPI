@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\alexa\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\alexa\\.nuget\\packages"
+      "C:\\Users\\Jer\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Jer\\.nuget\\packages"
     ]
   }
 }
