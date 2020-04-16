@@ -11880,19 +11880,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alexa\\.nuget\\packages\\": {}
+    "C:\\Users\\Jer\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
+      "projectUniqueName": "C:\\Users\\Jer\\Documents\\CPSC471\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
       "projectName": "ProjectTemp",
-      "projectPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
-      "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alexa\\InformationSecurityClubDatabaseAPI\\obj\\",
+      "projectPath": "C:\\Users\\Jer\\Documents\\CPSC471\\InformationSecurityClubDatabaseAPI\\ProjectTemp.csproj",
+      "packagesPath": "C:\\Users\\Jer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jer\\Documents\\CPSC471\\InformationSecurityClubDatabaseAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
