@@ -137,7 +137,7 @@ AS
 		teams_work_on_ctfs AS B
 		ON A.CTFKey = B.CTFKey
 		INNER JOIN
-		participants_in_teams AS C
+		team_members AS C
 		ON B.teamKey = C.teamKey
 		INNER JOIN
 		participants AS D
@@ -156,7 +156,7 @@ AS
 			SELECT pName, A.participantKey, teamKey
 			FROM participants AS A
 			LEFT JOIN
-			participants_in_teams AS B
+			team_members AS B
 			ON A.participantKey = B.participantKey)
 		
 		SELECT pName, specializationType
