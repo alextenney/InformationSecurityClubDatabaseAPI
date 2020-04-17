@@ -124,6 +124,20 @@ namespace ProjectTemp.Controllers
             return Ok(dt);
         }
 
+        // GET api/InfoSecDB/GetTeam
+        [HttpGet]
+        [Route("GetTeamInfo")]
+        public ActionResult<IEnumerable<string>> GetTeamInfo([FromBody] JObject data)
+        {
+            string teamName = (string)data["teamName"];
+            List<string> myP = new List<string>(); 
+            DatabaseModel dbm = new DatabaseModel(); 
+
+            DataTable dt = dbm.GetTeam(teamName); 
+            return Ok(dt);
+        }
+
+
         // GET api/InfoSecDB/SelectWhoFoundFlag
         [HttpGet]
         [Route("SelectWhoFoundFlag")]
