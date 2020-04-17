@@ -131,7 +131,7 @@ CREATE PROCEDURE [dbo].[selectCTF]
 	@CTFname VARCHAR(255)
 AS
 	BEGIN
-		SELECT host, pName
+		SELECT DISTINCT host, pName
 		FROM ctfs AS A
 		INNER JOIN 
 		teams_work_on_ctfs AS B
