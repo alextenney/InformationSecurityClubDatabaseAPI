@@ -83,8 +83,8 @@ namespace ProjectTemp.Controllers
             return Ok(value);
         }
 
-        // PUT api/InfoSecDB/adminCreatesTeam
-        [HttpPut]
+        // POST api/InfoSecDB/adminCreatesTeam
+        [HttpPost]
         [Route("adminCreatesTeam")]
         public ActionResult<IEnumerable<string>> adminCreatesTeam([FromBody] JObject data)
         {
@@ -124,7 +124,7 @@ namespace ProjectTemp.Controllers
             return Ok(dt);
         }
 
-        // GET api/InfoSecDB/GetTeam
+        // GET api/InfoSecDB/GetTeamInfo
         [HttpGet]
         [Route("GetTeamInfo")]
         public ActionResult<IEnumerable<string>> GetTeamInfo([FromBody] JObject data)
@@ -133,7 +133,7 @@ namespace ProjectTemp.Controllers
             List<string> myP = new List<string>(); 
             DatabaseModel dbm = new DatabaseModel(); 
 
-            DataTable dt = dbm.GetTeam(teamName); 
+            DataTable dt = dbm.CTFTeam(teamName); 
             return Ok(dt);
         }
 
@@ -154,12 +154,10 @@ namespace ProjectTemp.Controllers
         // GET api/InfoSecDB/SelectNotInTeam
         [HttpGet]
         [Route("SelectNotInTeam")]
-        public ActionResult<IEnumerable<string>> selectNotInTeam([FromBody] JObject data)
-        {
-            string teamName = (string)data["teamName"];
-
-            DatabaseModel dbm = new DatabaseModel();
-            DataTable dt = dbm.selectNotInTeam(teamName);
+        public ActionResult<IEnumerable<string>> selectNotInTeam()
+        { 
+            DatabaseModel dbm = new DatabaseModel(); // creates a database model
+            DataTable dt = dbm.selectNotInTeam(); 
 
             return Ok(dt);
         }

@@ -305,12 +305,10 @@ namespace ProjectTemp.Helpers
             return Execute_Data_Query_Store_Procedure("selectCTF", Parameters);
         }
 
-        public DataTable selectNotInTeam(string teamName)
+        public DataTable selectNotInTeam()
         {
 
-            SqlParameter[] Parameters = new SqlParameter[1];
-            // Load the parameters into the list
-            Parameters[0] = new SqlParameter("@teamName", teamName);
+            SqlParameter[] Parameters = new SqlParameter[0];
 
             return Execute_Data_Query_Store_Procedure("selectNotInTeam", Parameters);
 
@@ -324,7 +322,7 @@ namespace ProjectTemp.Helpers
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@flag", flag);
 
-            return Execute_Data_Query_Store_Procedure("selectWhoFoundFlag", Parameters);
+            return Execute_Data_Query_Store_Procedure("selectWhoCapturedFlag", Parameters);
 
         }
         #endregion
