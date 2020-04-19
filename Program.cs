@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* 
+This code was all taken from the project template uploaded on the course d2l. None of it belongs to the contributers of this project
+*/
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
