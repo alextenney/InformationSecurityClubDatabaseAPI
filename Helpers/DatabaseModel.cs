@@ -1,4 +1,12 @@
-﻿using System;
+  
+/* 
+Contributers: Alexandra Tenney, Martha Ibarra, Jeremy Stuart
+ Date Updated: April 17, 2020
+ Description: These are the helpers, which are called by different controller methods and call the stored procedures which fetch the 
+ correct data from the database.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,7 +23,7 @@ namespace ProjectTemp.Helpers
     {
 
         #region Query Methods
-
+        //the following methods are taken from the template uploaded to d2l, and not programmed by our team
         public SqlConnection GetSQLConnection(string connectionstring)
         {
             if (connectionstring == null)
@@ -210,8 +218,7 @@ namespace ProjectTemp.Helpers
 
         }
         #endregion
-
-        #region Examples
+    // the following methods are added by our team, not taken from the templates
         public int adminAddsTeamMember(string participantName, string teamName)
         {
             // Specifc number of parametrs for this stored procedure
@@ -219,7 +226,7 @@ namespace ProjectTemp.Helpers
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@participantName", participantName);
             Parameters[1] = new SqlParameter("@teamName", teamName);
-
+    //executes the stored procedure adminAddsTeam
             return Execute_Non_Query_Store_Procedure("adminAddsTeamMember", Parameters);
         }
 
@@ -229,28 +236,28 @@ namespace ProjectTemp.Helpers
             SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@teamName", teamName);
-
+            //executes the stored procedure adminCreatesTeam 
             return Execute_Non_Query_Store_Procedure("adminCreatesTeam", Parameters);
         }
 
 
         public DataTable GetChallengeInfo()
         {
-
+            // Specifc number of parametrs for this stored procedure
             SqlParameter[] Parameters = new SqlParameter[0];
 
-
+            //executes the stored procedure adminSelectsChallenges
             return Execute_Data_Query_Store_Procedure("adminSelectsChallenges", Parameters);
 
         }
 
         public DataTable adminSelectsParticipant(string pName)
         {
-
+            
             SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@pName", pName);
-
+             //executes the stored procedure adminSelectParticipant
             return Execute_Data_Query_Store_Procedure("adminSelectParticipant", Parameters);
 
         }
@@ -260,7 +267,7 @@ namespace ProjectTemp.Helpers
             SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@teamName", teamName);
-
+            //executes the stored procedure selectTeam 
             return Execute_Data_Query_Store_Procedure("selectTeam", Parameters);
         }
 
@@ -269,7 +276,7 @@ namespace ProjectTemp.Helpers
             SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@teamName", teamName);
-
+            //executes the stored procedure selectCTFSTeamParticipatedIn 
             return Execute_Data_Query_Store_Procedure("selectCTFSTeamParticipatedIn", Parameters);
         }
 
@@ -280,7 +287,7 @@ namespace ProjectTemp.Helpers
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@participantName", participantName);
             Parameters[1] = new SqlParameter("@meetingDate", meeetingDate);
-
+            //executes the stored procedure participantAddsAttendance 
             return Execute_Non_Query_Store_Procedure("participantAddsAttendance", Parameters);
         }
 
@@ -291,25 +298,26 @@ namespace ProjectTemp.Helpers
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@participantName", participantName);
             Parameters[1] = new SqlParameter("@teamName", teamName);
-
+            //executes the stored procedure participantAddsThemselvesToTeam
             return Execute_Non_Query_Store_Procedure("participantAddsThemselvesToTeam", Parameters);
         }
 
 
         public DataTable SelectCTF(string ctfName)
         {
+            // Specifc number of parametrs for this stored procedure
             SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@ctfName", ctfName);
-
+            //executes the stored procedure selectCTF 
             return Execute_Data_Query_Store_Procedure("selectCTF", Parameters);
         }
 
         public DataTable selectNotInTeam()
         {
-
+            // Specifc number of parametrs for this stored procedure
             SqlParameter[] Parameters = new SqlParameter[0];
-
+            //executes the stored procedure selectNotInTeam 
             return Execute_Data_Query_Store_Procedure("selectNotInTeam", Parameters);
 
             
@@ -317,11 +325,11 @@ namespace ProjectTemp.Helpers
 
         public DataTable selectWhoFoundFlag(string flag)
         {
-
+            // Specifc number of parametrs for this stored procedure
             SqlParameter[] Parameters = new SqlParameter[1];
             // Load the parameters into the list
             Parameters[0] = new SqlParameter("@flag", flag);
-
+            //executes the stored procedure selectWhoCapturedFlag 
             return Execute_Data_Query_Store_Procedure("selectWhoCapturedFlag", Parameters);
 
         }
