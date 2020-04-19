@@ -190,10 +190,10 @@ AS
 		
 		SELECT pName, specializationType
 		FROM NOTONTEAM AS A
-		INNER JOIN
+		LEFT JOIN
 		specialization_type_lookup AS B
 		ON A.participantKey = B.participantKey
-		INNER JOIN 
+		LEFT JOIN 
 		lookup_specialization AS C
 		ON B.typeKey = C.typeKey
 		WHERE teamKey IS NULL
