@@ -1,9 +1,13 @@
+# Author: Jeremy Stuart
+# Contributers: Alexandra Tenney
+# Date Updated: April 16, 2020
+# Description: These are all the schema queries for the database. 
+
 CREATE TABLE leaderboard (
   leaderboardKey int NOT NULL IDENTITY(1, 1),
   points int NOT NULL DEFAULT 0,
   PRIMARY KEY (leaderboardKey)
 ) ;
-
 
 CREATE TABLE challenges (
   challengeKey int NOT NULL IDENTITY(1, 1),
@@ -17,6 +21,8 @@ CREATE TABLE challenges (
   PRIMARY KEY (challengeKey)
 ) ;
 
+
+
 CREATE TABLE adds_points (
   challengeKey int DEFAULT NULL,
   leaderboardKey int DEFAULT NULL,
@@ -26,11 +32,13 @@ CREATE TABLE adds_points (
 );
 
 
+
 CREATE TABLE lookup_challenge (
   lookupKey int NOT NULL IDENTITY(1, 1),
   challengeType varchar(255) DEFAULT 'none',
   PRIMARY KEY (lookupKey)
 ) ;
+
 
 
 CREATE TABLE challenge_type_lookup (
@@ -40,6 +48,8 @@ CREATE TABLE challenge_type_lookup (
   CONSTRAINT challengeKey_fk2 FOREIGN KEY (challengeKey) REFERENCES challenges (challengeKey),
   CONSTRAINT lookupKey_fk FOREIGN KEY (lookupKey) REFERENCES lookup_challenge (lookupKey)
 );
+
+
 
 CREATE TABLE participants (
   participantKey int NOT NULL IDENTITY(1, 1),
@@ -52,6 +62,8 @@ CREATE TABLE participants (
   PRIMARY KEY (participantKey)
 ) ;
 
+
+
 DROP TABLE IF EXISTS members;
 CREATE TABLE members(
   participantKey int DEFAULT NULL,
@@ -59,6 +71,8 @@ CREATE TABLE members(
   PRIMARY KEY (participantKey),
   CONSTRAINT participantKey FOREIGN KEY (participantKey) REFERENCES participants (participantKey)
 );
+
+
 
 CREATE TABLE executives (
   expertise varchar(255) DEFAULT NULL,
@@ -68,12 +82,16 @@ CREATE TABLE executives (
   CONSTRAINT participantKey_fk1 FOREIGN KEY (participantKey) REFERENCES participants (participantKey) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
 
+
+
 CREATE TABLE meetings (
   meetingKey int NOT NULL IDENTITY(1, 1),
   meetingdate date DEFAULT NULL,
   topic varchar(255) DEFAULT NULL,
   PRIMARY KEY (meetingKey)
 ) ;
+
+
 
 CREATE TABLE participants_goto_meetings (
   participantKey int DEFAULT NULL,
@@ -82,6 +100,8 @@ CREATE TABLE participants_goto_meetings (
   CONSTRAINT meetingKey_fk FOREIGN KEY (meetingKey) REFERENCES meetings (meetingKey),
   CONSTRAINT participantKey_fk2 FOREIGN KEY (participantKey) REFERENCES participants (participantKey)
 );
+
+
 
 CREATE TABLE ctfs (
   CTFKey int NOT NULL IDENTITY(1, 1),
@@ -93,6 +113,8 @@ CREATE TABLE ctfs (
   PRIMARY KEY (CTFKey)
 ) ;
 
+
+
 CREATE TABLE ctfs_have_challenges (
   challengeKey int DEFAULT NULL,
   CTFKey int DEFAULT NULL,
@@ -100,6 +122,8 @@ CREATE TABLE ctfs_have_challenges (
   CONSTRAINT CTFKey_fk FOREIGN KEY (CTFKey) REFERENCES ctfs (CTFKey),
   CONSTRAINT challengeKey_fk5 FOREIGN KEY (challengeKey) REFERENCES challenges (challengeKey)
 );
+
+
 
 CREATE TABLE special_events (
   specialEventKey int NOT NULL IDENTITY(1, 1),
@@ -110,12 +134,15 @@ CREATE TABLE special_events (
 ) ;
 
 
+
 CREATE TABLE teams (
   teamKey int NOT NULL IDENTITY(1, 1),
   teamname varchar(255) DEFAULT 'none',
   points int DEFAULT NULL,
   PRIMARY KEY (teamKey)
 );
+
+
 
 CREATE TABLE team_members (
   teamKey int DEFAULT NULL,
@@ -126,11 +153,14 @@ CREATE TABLE team_members (
 ) ;
 
 
+
 CREATE TABLE lookup_specialization (
   typeKey int NOT NULL IDENTITY(1, 1),
   specializationType varchar(255) DEFAULT 'none',
   PRIMARY KEY (typeKey)
 );
+
+
 
 CREATE TABLE specialization_type_lookup (
   typeKey int DEFAULT NULL,
@@ -140,6 +170,8 @@ CREATE TABLE specialization_type_lookup (
   FOREIGN KEY (typeKey) REFERENCES lookup_specialization (typeKey)
 );
 
+
+
 CREATE TABLE participants_goto_special_events (
   participantKey int DEFAULT NULL,
   specialEventKey int DEFAULT NULL,
@@ -148,6 +180,8 @@ CREATE TABLE participants_goto_special_events (
   CONSTRAINT specialEventKey_fk FOREIGN KEY (specialEventKey) REFERENCES special_events (specialEventKey) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
 
+
+
 CREATE TABLE particpants_solve_challenges (
   participantKey int DEFAULT NULL,
   challengeKey int DEFAULT NULL,
@@ -155,6 +189,8 @@ CREATE TABLE particpants_solve_challenges (
   CONSTRAINT challengeKey_fk3 FOREIGN KEY (challengeKey) REFERENCES challenges(challengeKey),
   CONSTRAINT participantKey_fk4 FOREIGN KEY (participantKey) REFERENCES participants(participantKey)
 );
+
+
 
 CREATE TABLE teams_work_on_ctfs (
   teamKey int DEFAULT NULL,
