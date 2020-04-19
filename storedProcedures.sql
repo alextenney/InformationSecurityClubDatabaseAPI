@@ -1,3 +1,15 @@
+# Author: Jeremy Stuart
+# Contributers: Alexandra Tenney
+# Date Updated: April 17, 2020
+# Description: These are all of the stored procedures used within the controllers portion of our API that grab the correct information 
+#		out of the database schema. 
+
+
+# Params @particpantName
+# Returns: specializationType, memberSince, teamName, E.meetingsAttended, lifetimeScore of participant
+# Description: user will provide a participant's name who is in the database, and it will return specializationType, memberSince, 
+# 		teamName, E.meetingsAttended, lifetimeScore of participant.
+
 CREATE PROCEDURE [dbo].[adminSelectParticipant]
 	@participantName VARCHAR(255)
 AS
@@ -55,6 +67,12 @@ AS
 	END
 
 
+# Params @particpantName
+# 	 @meetingDate
+# Returns: None
+#Description: User will provide a participant name and the meeting date, and the participant's number of meetings attended will be 
+#		updated
+
 CREATE PROCEDURE [dbo].[participantAddsAttendance]
 	@participantName VARCHAR(255),
 	@meetingDate DATE
@@ -71,6 +89,9 @@ END
 
 
 
+# Params @teamName
+# Returns: teamname, pName, specializationType
+#Description: User will provide a teamt name and the meeting date, and be returned teamname, pName, specializationType of that team
 
 CREATE PROCEDURE [dbo].[selectTeam]
     @teamName VARCHAR(255)
@@ -109,6 +130,9 @@ AS
 END
 
 
+# Params: none
+# Returns: cName, A.challengeKey, cPath, difficulty, author, challengeType
+#Description: Returns cName, A.challengeKey, cPath, difficulty, author, challengeType of every challenge in the database
 
 
 CREATE PROCEDURE [dbo].[adminSelectsChallenges]
@@ -125,6 +149,9 @@ AS
 
 END
 
+# Params: @CTFname
+# Returns: host, pName
+#Description: User will provide a CTFname as input and be returned the host and the participants who competed in the CTF
 
 
 CREATE PROCEDURE [dbo].[selectCTF]
@@ -147,7 +174,9 @@ END
 
 
 
-/* Selects all participants not on a team, and their specializations */
+# Params: None
+# Returns: pName, specializationType
+#Description: Selects all participants not on a team, and their specializations 
 
 CREATE PROCEDURE [dbo].[selectNotInTeam]
 AS
@@ -171,6 +200,13 @@ AS
 END
 
 
+
+# Params: @participantName
+	  @teamName
+# Returns: None
+#Description: User provides a teamname that in is the database, and a participant name in the database and the procedure inserts that
+# 	      participant into the team
+
 CREATE PROCEDURE [dbo].[adminAddsTeamMember]
 	@participantName VARCHAR(255),
 	@teamName VARCHAR(255)
@@ -186,6 +222,12 @@ AS
 END
 
 
+# Params: @participantName
+	  @teamName
+# Returns: None
+# Description: User provides a teamname that in is the database, and their own participant name who in the database and the procedure 
+#	      inserts that participant into the team
+
 CREATE PROCEDURE [dbo].[participantAddsThemselvesToTeam]
 	@participantName VARCHAR(255),
 	@teamName VARCHAR(255)
@@ -200,8 +242,9 @@ AS
 				);
 END
 
-
-
+# Params: @flag
+# Returns: pName
+# Description: User provides a flag that in is the database, and is returned all participants in the database who have found that flag
 
 CREATE PROCEDURE [dbo].[selectWhoCapturedFlag]
 	@flag VARCHAR(255)
@@ -219,7 +262,9 @@ AS
 END
 
 
-
+# Params: @teamName
+# Returns: ctfName
+# Description: User provides a CTF name that in is the database, and is returned all tema names who have competed in it
 
 CREATE PROCEDURE [dbo].[selectCTFSTeamParticipatedIn]
 	@teamName VARCHAR(255)
@@ -237,6 +282,9 @@ AS
 END
 
 
+# Params: @teamname
+# Returns: None
+# Description: User provides a team name that is not in the database, and it is inserted as a new team instance into the database
 
 CREATE PROCEDURE [dbo].[adminCreatesTeam]
 	@teamName varchar(255)
