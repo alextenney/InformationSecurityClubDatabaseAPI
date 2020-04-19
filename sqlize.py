@@ -1,3 +1,9 @@
+# Author: Martha Ibarra
+# Contributers: 
+# Date Updated: April 12, 2020
+# Description: This is a python program to convert actual club attendance data and participants into sql queries. 
+
+
 #Name,Email,UCID,Meetings Attended,Member Status,,Name,Email,UCID,Meetings Attended,Member Status
 #desired format: INSERT INTO participants (name, email, UCID, meetingsAttended) VALUES ('Alexandra Tenney','alexandra.tenney@ucalgary.ca','30042397','8');
 #this program will correctly put sql data into correct insert data
